@@ -8,7 +8,8 @@ package co.microservices.controller;
  */
 
 
-import co.microservices.domain.request.RequestDTO;
+import co.microservices.domain.request.RequestReferenciaFacturaDTO;
+import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
 import co.microservices.domain.response.ResponseFormasPagoDTO;
 import co.microservices.domain.response.ResponseUserDTO;
@@ -37,8 +38,8 @@ public class PruebaController {
     }
 
     @PostMapping(value = VALIDATE_USER)
-    public ResponseUserDTO validateUser(@RequestBody RequestDTO requestDTO){
-        ResponseUserDTO responseUserDTO = pruebaIntempoService.validateUser(requestDTO);
+    public ResponseUserDTO validateUser(@RequestBody RequestUserDTO requestUserDTO){
+        ResponseUserDTO responseUserDTO = pruebaIntempoService.validateUser(requestUserDTO);
 
         return responseUserDTO;
     }
@@ -50,6 +51,11 @@ public class PruebaController {
 
     @GetMapping(value = LIST_FORMAS_PAGO)
     public List<ResponseFormasPagoDTO> listFormasPago(){
+        return pruebaIntempoService.listFormasPago();
+    }
+
+    @GetMapping(value = LIST_FORMAS_PAGO)
+    public List<ResponseFormasPagoDTO> listreferenciaFactura(@RequestBody RequestReferenciaFacturaDTO request){
         return pruebaIntempoService.listFormasPago();
     }
 

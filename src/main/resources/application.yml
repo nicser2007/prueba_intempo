@@ -22,6 +22,7 @@ spring:
         validateUser: /validateUser
         listConvenios: /listConvenios
         listFormasPago: /listFormasPago
+        referenciaFactura: /referenciaFactura
 
   messages:
     encoding: UTF-8
@@ -59,14 +60,18 @@ spring:
 
 ## PROVIDERS
 providers:
+  gas:
+    name: GAS
+    url: http://130.211.116.156/gas-service/PagosService
+    soapAction: http://www.servicios.co/pagos/service/PagosInerface/CosultarRequest
+    contextPath: co.microservices.wsdl
+    timeout:
+      connection: 5000
+      read: 47000
+      test: 10000
   agua:
     name: AGUA
-    url: http://192.168.29.20:8280/services/minticesbvycGYP
-    soapActionGiro: http://tempuri.org/IServiceGYP/envioGiro
-    soapActionNovedad: http://tempuri.org/IServiceGYP/envioNovedad
-    contextPathGYP: co.moviired.microservices.mintic.wsdlGYP
-
-    nitPrestador: 900392611
+    url: http://130.211.116.156:80/servicios/pagos/v1/payments/
     timeout:
       connection: 5000
       read: 47000

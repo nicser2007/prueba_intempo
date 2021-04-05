@@ -10,7 +10,7 @@ package co.microservices.service;
 import co.microservices.domain.entity.Convenios;
 import co.microservices.domain.entity.FormasPago;
 import co.microservices.domain.entity.User;
-import co.microservices.domain.request.RequestDTO;
+import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
 import co.microservices.domain.response.ResponseFormasPagoDTO;
 import co.microservices.domain.response.ResponseUserDTO;
@@ -39,9 +39,9 @@ public class PruebaIntempoService {
     }
 
 
-    public ResponseUserDTO validateUser (RequestDTO requestDTO){
+    public ResponseUserDTO validateUser (RequestUserDTO requestUserDTO){
 
-        User user = userRepository.findByUserPass(requestDTO.getUser(), requestDTO.getPassword());
+        User user = userRepository.findByUserPass(requestUserDTO.getUser(), requestUserDTO.getPassword());
         ResponseUserDTO responseUserDTO = new ResponseUserDTO();
         if(user != null) {
             responseUserDTO.setId(user.getId());
@@ -78,4 +78,5 @@ public class PruebaIntempoService {
         }
         return response;
     }
+
 }

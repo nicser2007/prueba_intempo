@@ -16,23 +16,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class RequestDTO {
-    private String user;
-    private String password;
+public class RequestReferenciaFacturaDTO {
+    private String referenciaFactura;
 
-    public String getUser() {
-        return user;
+    public String getReferenciaFactura() {
+        return referenciaFactura;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setReferenciaFactura(String referenciaFactura) {
+        this.referenciaFactura = referenciaFactura;
     }
 }
