@@ -1,0 +1,73 @@
+## SERVIDOR
+server:
+  port: 8080
+  servlet:
+    context-path: /prueba/intempo
+  error:
+    include-stacktrace: never
+
+## APLICACIÓN
+docker-secrets:
+  bind-path: /run/secrets
+
+spring:
+  application:
+    name: Prueba-Intempo
+    version: v1.0.0
+    log: ./logs/
+    services:
+      # REST
+      rest:
+        ping: /ping
+        validateUser: /validateUser
+        listConvenios: /listConvenios
+        listFormasPago: /listFormasPago
+
+  messages:
+    encoding: UTF-8
+  main:
+    banner-mode: log
+    allow-bean-definition-overriding: true
+
+  # Database
+  datasource:
+    initialization-mode: never
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/banco_abc?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT-5
+    username: root
+    password: root
+    hikari:
+      pool-name: banco_abc
+      auto-commit: true
+      allow-pool-suspension: true
+      connection-timeout: 60000
+      idle-timeout: 60000
+      maximum-pool-size: 60
+      minimum-idle: 20
+      max-lifetime: 120000
+      catalog: banco_abc
+      test-query: "SELECT 1"
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+## PROVIDERS
+providers:
+  agua:
+    name: AGUA
+    url: http://192.168.29.20:8280/services/minticesbvycGYP
+    soapActionGiro: http://tempuri.org/IServiceGYP/envioGiro
+    soapActionNovedad: http://tempuri.org/IServiceGYP/envioNovedad
+    contextPathGYP: co.moviired.microservices.mintic.wsdlGYP
+
+    nitPrestador: 900392611
+    timeout:
+      connection: 5000
+      read: 47000
+      test: 10000

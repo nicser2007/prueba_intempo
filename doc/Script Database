@@ -1,0 +1,30 @@
+create database banco_abc;
+
+create table user(
+	id decimal(10,0),
+    name varchar(50),
+    user varchar(20),
+    password varchar(20)
+);
+
+create table convenios(
+	id decimal(10,0),
+    name varchar(50),
+    compensar varchar(1),
+    status varchar(1)
+);
+
+insert into banco_abc.convenios (id,name,status) values (1,'Agua','ACTIVE');
+insert into banco_abc.convenios (id,name,status) values (2,'Gas','ACTIVE');
+insert into banco_abc.convenios (id,name,status) values (3,'Luz','ACTIVE');
+insert into banco_abc.convenios (id,name,status) values (4,'Telefonía','ACTIVE');
+
+create table formas_pago(
+	id decimal(10,0),
+    description varchar(50)
+);
+
+insert into banco_abc.formas_pago (id,description) values (1,'Efectivo');
+insert into banco_abc.formas_pago (id,description) values (2,'Tarjeta Debito');
+insert into banco_abc.formas_pago (id,description) values (3,'Tarjeta Credito');
+
