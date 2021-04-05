@@ -1,11 +1,17 @@
 package co.microservices.domain.response;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode()

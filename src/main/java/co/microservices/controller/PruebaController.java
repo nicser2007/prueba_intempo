@@ -1,6 +1,13 @@
 package co.microservices.controller;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
-import co.microservices.domain.entity.Convenios;
+
 import co.microservices.domain.request.RequestDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
 import co.microservices.domain.response.ResponseFormasPagoDTO;
