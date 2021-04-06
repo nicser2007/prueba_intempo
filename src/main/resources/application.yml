@@ -71,8 +71,7 @@ providers:
       test: 10000
   agua:
     name: AGUA
-    url: http://130.211.116.156:80/servicios/pagos/v1/payments/
+    url: http://130.211.116.156:80/servicios/pagos/v1/payments/{segment}
     timeout:
       connection: 5000
       read: 47000
-      test: 10000

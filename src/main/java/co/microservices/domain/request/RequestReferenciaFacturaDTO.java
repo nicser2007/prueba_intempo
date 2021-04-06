@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RequestReferenciaFacturaDTO {
+
+    private String convenio;
     private String referenciaFactura;
 
     public String getReferenciaFactura() {
@@ -25,5 +27,13 @@ public class RequestReferenciaFacturaDTO {
 
     public void setReferenciaFactura(String referenciaFactura) {
         this.referenciaFactura = referenciaFactura;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(String convenio) {
+        this.convenio = convenio;
     }
 }

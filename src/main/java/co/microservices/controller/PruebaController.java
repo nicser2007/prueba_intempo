@@ -12,10 +12,12 @@ import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
 import co.microservices.domain.response.ResponseFormasPagoDTO;
+import co.microservices.domain.response.ResponseReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseUserDTO;
 import co.microservices.service.PruebaIntempoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -38,25 +40,25 @@ public class PruebaController {
     }
 
     @PostMapping(value = VALIDATE_USER)
-    public ResponseUserDTO validateUser(@RequestBody RequestUserDTO requestUserDTO){
+    public ResponseUserDTO validateUser(@RequestBody RequestUserDTO requestUserDTO) {
         ResponseUserDTO responseUserDTO = pruebaIntempoService.validateUser(requestUserDTO);
 
         return responseUserDTO;
     }
 
     @GetMapping(value = LIST_CONVENIOS)
-    public List<ResponseConveniosDTO> listConvenios(){
+    public List<ResponseConveniosDTO> listConvenios() {
         return pruebaIntempoService.listConvenios();
     }
 
     @GetMapping(value = LIST_FORMAS_PAGO)
-    public List<ResponseFormasPagoDTO> listFormasPago(){
+    public List<ResponseFormasPagoDTO> listFormasPago() {
         return pruebaIntempoService.listFormasPago();
     }
 
-    @GetMapping(value = LIST_FORMAS_PAGO)
-    public List<ResponseFormasPagoDTO> listreferenciaFactura(@RequestBody RequestReferenciaFacturaDTO request){
-        return pruebaIntempoService.listFormasPago();
+    @PostMapping(value = REFERENCIA_FACTURA)
+    public Mono<ResponseReferenciaFacturaDTO> referenciaFactura(@RequestBody RequestReferenciaFacturaDTO request) {
+        return pruebaIntempoService.referenciaFacturaGas(request);
     }
 
 }

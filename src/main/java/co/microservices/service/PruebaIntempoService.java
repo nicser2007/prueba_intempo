@@ -10,15 +10,19 @@ package co.microservices.service;
 import co.microservices.domain.entity.Convenios;
 import co.microservices.domain.entity.FormasPago;
 import co.microservices.domain.entity.User;
+import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
 import co.microservices.domain.response.ResponseFormasPagoDTO;
+import co.microservices.domain.response.ResponseReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseUserDTO;
 import co.microservices.repository.jpa.IConveniosRepository;
 import co.microservices.repository.jpa.IFormasPagoRepository;
 import co.microservices.repository.jpa.IUserRepository;
+import co.microservices.wsdl.ResultadoConsulta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -31,11 +35,13 @@ public class PruebaIntempoService {
     private final IUserRepository userRepository;
     private final IConveniosRepository conveniosRepository;
     private final IFormasPagoRepository formasPagoRepository;
+    private final GetReferenciaFactura getReferenciaFactura;
 
-    public PruebaIntempoService(IUserRepository userRepository, IConveniosRepository conveniosRepository, IFormasPagoRepository formasPagoRepository) {
+    public PruebaIntempoService(IUserRepository userRepository, IConveniosRepository conveniosRepository, IFormasPagoRepository formasPagoRepository, GetReferenciaFactura getReferenciaFactura) {
         this.userRepository = userRepository;
         this.conveniosRepository = conveniosRepository;
         this.formasPagoRepository = formasPagoRepository;
+        this.getReferenciaFactura = getReferenciaFactura;
     }
 
 
@@ -77,6 +83,32 @@ public class PruebaIntempoService {
             response.add(item);
         }
         return response;
+    }
+
+    public Mono<ResponseReferenciaFacturaDTO> referenciaFacturaGas(RequestReferenciaFacturaDTO request){
+
+        return getReferenciaFactura.getReferenciaFactura(request)
+                .flatMap(response -> {
+                    ResponseReferenciaFacturaDTO responseReferenciaFacturaDTO = new ResponseReferenciaFacturaDTO();
+                    responseReferenciaFacturaDTO.setReferenciaFactura(response.getReferenciaFactura().getReferenciaFactura());
+                    responseReferenciaFacturaDTO.setTotalPagar(response.getTotalPagar());
+
+                    return Mono.just(responseReferenciaFacturaDTO);
+                });
+
+    }
+
+    public Mono<ResponseReferenciaFacturaDTO> referenciaFacturaAgua (RequestReferenciaFacturaDTO request){
+
+        return getReferenciaFactura.getReferenciaFactura(request)
+                .flatMap(response -> {
+                    ResponseReferenciaFacturaDTO responseReferenciaFacturaDTO = new ResponseReferenciaFacturaDTO();
+                    responseReferenciaFacturaDTO.setReferenciaFactura(response.getReferenciaFactura().getReferenciaFactura());
+                    responseReferenciaFacturaDTO.setTotalPagar(response.getTotalPagar());
+
+                    return Mono.just(responseReferenciaFacturaDTO);
+                });
+
     }
 
 }
