@@ -8,6 +8,7 @@ package co.microservices.domain.response;
  */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,17 @@ import java.math.BigDecimal;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ResponseReferenciaFacturaDTO {
 
+    @Schema(example = "0", description = "Codigo de respuesta 0-Exitoso 99-Fallido")
+    private String code;
+
+    @Schema(example = "123456789", description = "Numero de referencia de pago")
     private String referenciaFactura;
+
+    @Schema(example = "100.00", description = "Valor del total a pagar")
     private double totalPagar;
+
+    @Schema(example = "Exitoso", description = "Mensaje de respuesta")
+    private String message;
 
     public String getReferenciaFactura() {
         return referenciaFactura;
@@ -37,5 +47,21 @@ public class ResponseReferenciaFacturaDTO {
 
     public void setTotalPagar(double totalPagar) {
         this.totalPagar = totalPagar;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

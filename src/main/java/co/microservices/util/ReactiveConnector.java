@@ -1,5 +1,6 @@
 package co.microservices.util;
 
+import com.sun.istack.NotNull;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -17,7 +18,6 @@ import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.resources.ConnectionProvider.Builder;
 import reactor.netty.http.client.HttpClient;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.Iterator;

@@ -8,6 +8,7 @@ package co.microservices.domain.response;
  */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,10 @@ import java.math.BigDecimal;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ResponseFormasPagoDTO {
 
+    @Schema(example = "1", description = "Identificador de la Forma de Pago")
     private BigDecimal id;
+
+    @Schema(example = "Efectivo", description = "Descripción de la Forma de Pago")
     private String description;
 
     public BigDecimal getId() {

@@ -1,5 +1,6 @@
 package co.microservices.util;
 
+import com.sun.istack.NotNull;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,7 +17,6 @@ import org.springframework.ws.support.MarshallingUtils;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 import reactor.core.publisher.Mono;
 
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBElement;
 import java.io.Serializable;
 

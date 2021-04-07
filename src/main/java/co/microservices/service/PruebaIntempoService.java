@@ -10,6 +10,7 @@ package co.microservices.service;
 import co.microservices.domain.entity.Convenios;
 import co.microservices.domain.entity.FormasPago;
 import co.microservices.domain.entity.User;
+import co.microservices.domain.request.RequestPagoFacturaDTO;
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
@@ -19,7 +20,6 @@ import co.microservices.domain.response.ResponseUserDTO;
 import co.microservices.repository.jpa.IConveniosRepository;
 import co.microservices.repository.jpa.IFormasPagoRepository;
 import co.microservices.repository.jpa.IUserRepository;
-import co.microservices.wsdl.ResultadoConsulta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -36,12 +36,14 @@ public class PruebaIntempoService {
     private final IConveniosRepository conveniosRepository;
     private final IFormasPagoRepository formasPagoRepository;
     private final GetReferenciaFactura getReferenciaFactura;
+    private final PaymentsReferenciaFactura paymentsReferenciaFactura;
 
-    public PruebaIntempoService(IUserRepository userRepository, IConveniosRepository conveniosRepository, IFormasPagoRepository formasPagoRepository, GetReferenciaFactura getReferenciaFactura) {
+    public PruebaIntempoService(IUserRepository userRepository, IConveniosRepository conveniosRepository, IFormasPagoRepository formasPagoRepository, GetReferenciaFactura getReferenciaFactura, PaymentsReferenciaFactura paymentsReferenciaFactura) {
         this.userRepository = userRepository;
         this.conveniosRepository = conveniosRepository;
         this.formasPagoRepository = formasPagoRepository;
         this.getReferenciaFactura = getReferenciaFactura;
+        this.paymentsReferenciaFactura = paymentsReferenciaFactura;
     }
 
 
@@ -85,26 +87,41 @@ public class PruebaIntempoService {
         return response;
     }
 
-    public Mono<ResponseReferenciaFacturaDTO> referenciaFacturaGas(RequestReferenciaFacturaDTO request){
+    public Mono<ResponseReferenciaFacturaDTO> referenciaFactura(RequestReferenciaFacturaDTO request){
 
         return getReferenciaFactura.getReferenciaFactura(request)
                 .flatMap(response -> {
                     ResponseReferenciaFacturaDTO responseReferenciaFacturaDTO = new ResponseReferenciaFacturaDTO();
                     responseReferenciaFacturaDTO.setReferenciaFactura(response.getReferenciaFactura().getReferenciaFactura());
                     responseReferenciaFacturaDTO.setTotalPagar(response.getTotalPagar());
+
+                    if(response.getReferenciaFactura().getReferenciaFactura().equals("0")){
+                        responseReferenciaFacturaDTO.setCode("99");
+                        responseReferenciaFacturaDTO.setMessage("Fallido");
+                    }else{
+                        responseReferenciaFacturaDTO.setCode("0");
+                        responseReferenciaFacturaDTO.setMessage("Exitoso");
+                    }
 
                     return Mono.just(responseReferenciaFacturaDTO);
                 });
 
     }
 
-    public Mono<ResponseReferenciaFacturaDTO> referenciaFacturaAgua (RequestReferenciaFacturaDTO request){
+    public Mono<ResponseReferenciaFacturaDTO> pagoFactura(RequestPagoFacturaDTO request){
 
-        return getReferenciaFactura.getReferenciaFactura(request)
+        return paymentsReferenciaFactura.paymentsReferenciaFactura(request)
                 .flatMap(response -> {
                     ResponseReferenciaFacturaDTO responseReferenciaFacturaDTO = new ResponseReferenciaFacturaDTO();
                     responseReferenciaFacturaDTO.setReferenciaFactura(response.getReferenciaFactura().getReferenciaFactura());
-                    responseReferenciaFacturaDTO.setTotalPagar(response.getTotalPagar());
+                    responseReferenciaFacturaDTO.setMessage(response.getMensaje());
+                    responseReferenciaFacturaDTO.setTotalPagar(request.getValorFactura());
+
+                    if(response.getReferenciaFactura().getReferenciaFactura().equals("0")){
+                        responseReferenciaFacturaDTO.setCode("99");
+                    }else{
+                        responseReferenciaFacturaDTO.setCode("0");
+                    }
 
                     return Mono.just(responseReferenciaFacturaDTO);
                 });

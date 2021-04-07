@@ -8,6 +8,7 @@ package co.microservices.domain.request;
  */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RequestUserDTO {
+
+    @Schema(example = "master", description = "Usuario del sistema")
     private String user;
+
+    @Schema(example = "******", description = "Contraseña del sistema")
     private String password;
 
     public String getUser() {

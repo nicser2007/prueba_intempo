@@ -2,12 +2,11 @@ package co.microservices.config;
 
 import co.microservices.properties.SoapProperties;
 import co.microservices.util.SoapConnector;
+import com.sun.istack.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-
-import javax.validation.constraints.NotNull;
 
 @Configuration
 public class SoapConfiguration {

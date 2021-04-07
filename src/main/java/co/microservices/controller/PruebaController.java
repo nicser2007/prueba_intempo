@@ -8,6 +8,7 @@ package co.microservices.controller;
  */
 
 
+import co.microservices.domain.request.RequestPagoFacturaDTO;
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.request.RequestUserDTO;
 import co.microservices.domain.response.ResponseConveniosDTO;
@@ -16,6 +17,7 @@ import co.microservices.domain.response.ResponseReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseUserDTO;
 import co.microservices.service.PruebaIntempoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -25,7 +27,7 @@ import static co.microservices.util.ConstantsHelper.*;
 
 @Slf4j
 @RestController
-@RequestMapping(SERVER_CONTEXT_PATH)
+@RequestMapping
 public class PruebaController {
 
     private final PruebaIntempoService pruebaIntempoService;
@@ -35,30 +37,39 @@ public class PruebaController {
     }
 
     @GetMapping(value = PING_YML_ROUTE)
-    public final String ping() {
-        return "it's alive Prueba Intempo";
+    public final ResponseEntity<String> ping() {
+        String res = "it's alive Prueba Intempo";
+        return ResponseEntity.ok(res);
     }
 
     @PostMapping(value = VALIDATE_USER)
-    public ResponseUserDTO validateUser(@RequestBody RequestUserDTO requestUserDTO) {
+    public ResponseEntity<ResponseUserDTO> validateUser(@RequestBody RequestUserDTO requestUserDTO) {
         ResponseUserDTO responseUserDTO = pruebaIntempoService.validateUser(requestUserDTO);
-
-        return responseUserDTO;
+        return ResponseEntity.ok(responseUserDTO);
     }
 
     @GetMapping(value = LIST_CONVENIOS)
-    public List<ResponseConveniosDTO> listConvenios() {
-        return pruebaIntempoService.listConvenios();
+    public ResponseEntity<List<ResponseConveniosDTO>> listConvenios() {
+        List<ResponseConveniosDTO> response = pruebaIntempoService.listConvenios();
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = LIST_FORMAS_PAGO)
-    public List<ResponseFormasPagoDTO> listFormasPago() {
-        return pruebaIntempoService.listFormasPago();
+    public ResponseEntity<List<ResponseFormasPagoDTO>> listFormasPago() {
+        List<ResponseFormasPagoDTO> response = pruebaIntempoService.listFormasPago();
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping(value = REFERENCIA_FACTURA)
-    public Mono<ResponseReferenciaFacturaDTO> referenciaFactura(@RequestBody RequestReferenciaFacturaDTO request) {
-        return pruebaIntempoService.referenciaFacturaGas(request);
+    public ResponseEntity<Mono<ResponseReferenciaFacturaDTO>> referenciaFactura(@RequestBody RequestReferenciaFacturaDTO request) {
+        Mono<ResponseReferenciaFacturaDTO> response = pruebaIntempoService.referenciaFactura(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = PAGO_FACTURA)
+    public ResponseEntity<Mono<ResponseReferenciaFacturaDTO>> pagoFactura(@RequestBody RequestPagoFacturaDTO request) {
+        Mono<ResponseReferenciaFacturaDTO> response = pruebaIntempoService.pagoFactura(request);
+        return ResponseEntity.ok(response);
     }
 
 }

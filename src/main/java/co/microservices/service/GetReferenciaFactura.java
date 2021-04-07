@@ -2,6 +2,7 @@ package co.microservices.service;
 
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseConsultaAguaDTO;
+import co.microservices.domain.response.ResponseReferenciaFacturaDTO;
 import co.microservices.properties.ClientProperties;
 import co.microservices.properties.SoapProperties;
 import co.microservices.util.ReactiveConnector;

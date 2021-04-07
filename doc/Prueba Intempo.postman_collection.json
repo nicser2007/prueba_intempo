@@ -100,6 +100,165 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "referenciaFactura",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"155366\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/prueba/intempo/referenciaFactura",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prueba",
+						"intempo",
+						"referenciaFactura"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagoFactura",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"155366\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/prueba/intempo/referenciaFactura",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prueba",
+						"intempo",
+						"referenciaFactura"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultaAgua",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.211.116.156:80/servicios/pagos/v1/payments/15252",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"116",
+						"156"
+					],
+					"port": "80",
+					"path": [
+						"servicios",
+						"pagos",
+						"v1",
+						"payments",
+						"15252"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagoAgua",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorFactura\":\"7700.675068918439\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.211.116.156:80/servicios/pagos/v1/payments/15252",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"116",
+						"156"
+					],
+					"port": "80",
+					"path": [
+						"servicios",
+						"pagos",
+						"v1",
+						"payments",
+						"15252"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

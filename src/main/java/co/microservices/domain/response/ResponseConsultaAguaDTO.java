@@ -20,6 +20,7 @@ public class ResponseConsultaAguaDTO {
 
     private Integer idFactura;
     private double valorFactura;
+    private String mensaje;
 
     public Integer getIdFactura() {
         return idFactura;
@@ -35,5 +36,13 @@ public class ResponseConsultaAguaDTO {
 
     public void setValorFactura(double valorFactura) {
         this.valorFactura = valorFactura;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }

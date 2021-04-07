@@ -17,7 +17,7 @@ public final class ConstantsHelper {
     public static final String LIST_CONVENIOS = "${spring.application.services.rest.listConvenios}";
     public static final String LIST_FORMAS_PAGO = "${spring.application.services.rest.listFormasPago}";
     public static final String REFERENCIA_FACTURA = "${spring.application.services.rest.referenciaFactura}";
-    public static final String REGISTER_MINTIC = "${schedulers.mintic.cron}";
+    public static final String PAGO_FACTURA = "${spring.application.services.rest.pagoFactura}";
     public static final String CRON_MINTIC_RIESGO = "${schedulers.mintic.cronRiesgo}";
 
     // Logs on start application
