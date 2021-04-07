@@ -1,4 +1,11 @@
 package co.microservices.service;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseConsultaAguaDTO;
@@ -46,8 +53,16 @@ public class GetReferenciaFactura extends WebServiceGatewaySupport {
         } else if (request.getConvenio().equals("Agua")) {
             String url = clientProperties.getUrl().replace("{segment}", request.getReferenciaFactura());
             return resultadoConsultaAgua(url);
+        }else{
+            double valorAleatorio = Math.random()*(100000-10)+100000;
+            ResultadoConsulta resultadoConsulta = new ResultadoConsulta();
+            ReferenciaFactura ref = new ReferenciaFactura();
+            ref.setReferenciaFactura(request.getReferenciaFactura());
+
+            resultadoConsulta.setReferenciaFactura(ref);
+            resultadoConsulta.setTotalPagar(valorAleatorio);
+            return Mono.just(resultadoConsulta);
         }
-        return null;
     }
 
     public Mono<ResultadoConsulta> resultadoConsultaGas(ReferenciaFactura request) {

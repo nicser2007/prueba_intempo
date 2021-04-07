@@ -1,30 +1,48 @@
 create database banco_abc;
 
 create table user(
-	id decimal(10,0),
+	user_id decimal(10,0),
     name varchar(50),
     user varchar(20),
-    password varchar(20)
+    password varchar(20),
+    PRIMARY KEY (user_id)
 );
 
+insert into banco_abc.user (user_id,name,user,password) values (1,'Master User','master','1234');
+
+DROP table convenios;
 create table convenios(
-	id decimal(10,0),
+	convenio_id decimal(10,0),
     name varchar(50),
     compensar varchar(1),
-    status varchar(1)
+    status varchar(10),
+    PRIMARY KEY (convenio_id)
 );
 
-insert into banco_abc.convenios (id,name,status) values (1,'Agua','ACTIVE');
-insert into banco_abc.convenios (id,name,status) values (2,'Gas','ACTIVE');
-insert into banco_abc.convenios (id,name,status) values (3,'Luz','ACTIVE');
-insert into banco_abc.convenios (id,name,status) values (4,'Telefonía','ACTIVE');
+insert into banco_abc.convenios (convenio_id,name,compensar,status) values (1,'Agua','S','ACTIVE');
+insert into banco_abc.convenios (convenio_id,name,compensar,status) values (2,'Gas','S','ACTIVE');
+insert into banco_abc.convenios (convenio_id,name,compensar,status) values (3,'Luz','N','ACTIVE');
+insert into banco_abc.convenios (convenio_id,name,compensar,status) values (4,'Telefonía','N','ACTIVE');
 
+DROP table formas_pago;
 create table formas_pago(
-	id decimal(10,0),
-    description varchar(50)
+	forma_id decimal(10,0),
+    description varchar(50),
+    PRIMARY KEY (forma_id)
 );
 
-insert into banco_abc.formas_pago (id,description) values (1,'Efectivo');
-insert into banco_abc.formas_pago (id,description) values (2,'Tarjeta Debito');
-insert into banco_abc.formas_pago (id,description) values (3,'Tarjeta Credito');
+insert into banco_abc.formas_pago (forma_id,description) values (1,'Efectivo');
+insert into banco_abc.formas_pago (forma_id,description) values (2,'Tarjeta Debito');
+insert into banco_abc.formas_pago (forma_id,description) values (3,'Tarjeta Credito');
 
+DROP table transacciones;
+create table transacciones(
+	tx_id decimal(10,0),
+    fecha datetime,
+    convenio_id decimal(10,0),
+    tipo varchar(50),
+    referencia_factura varchar(50),
+    valor_factura double,
+    estado varchar(50),
+    PRIMARY KEY (tx_id)
+);

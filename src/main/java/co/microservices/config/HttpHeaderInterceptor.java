@@ -1,4 +1,11 @@
 package co.microservices.config;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ws.client.support.interceptor.ClientInterceptor;

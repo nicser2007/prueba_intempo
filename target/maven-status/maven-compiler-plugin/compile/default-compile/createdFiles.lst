@@ -10,11 +10,13 @@ co\microservices\repository\jpa\IConveniosRepository.class
 co\microservices\wsdl\ReferenciaFactura.class
 co\microservices\wsdl\Resultado.class
 co\microservices\config\SoapConfiguration.class
+co\microservices\domain\entity\Transacciones.class
 co\microservices\service\PaymentsReferenciaFactura.class
 co\microservices\controller\PruebaController.class
 co\microservices\repository\jpa\IUserRepository.class
 co\microservices\domain\entity\FormasPago.class
 co\microservices\domain\response\ResponseFormasPagoDTO.class
+co\microservices\repository\jpa\ITransaccionesRepository.class
 co\microservices\config\ClientConfig.class
 co\microservices\PruebaApplication.class
 co\microservices\repository\jpa\IFormasPagoRepository.class
@@ -35,3 +37,5 @@ co\microservices\wsdl\package-info.class
 co\microservices\config\SwaggerConfig.class
 co\microservices\domain\response\ResponseReferenciaFacturaDTO.class
 co\microservices\domain\entity\Convenios.class
+co\microservices\domain\OperationType.class
+co\microservices\util\UtilDataBase.class

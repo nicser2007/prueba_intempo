@@ -27,6 +27,9 @@ public class ResponseUserDTO {
     @Schema(example = "Master User", description = "Nombre del Usuario")
     private String name;
 
+    @Schema(example = "Exitosa", description = "Nombre del Usuario")
+    private String estado;
+
     public BigDecimal getId() {
         return id;
     }
@@ -43,4 +46,11 @@ public class ResponseUserDTO {
         this.name = name;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

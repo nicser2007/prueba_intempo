@@ -8,6 +8,7 @@ package co.microservices.controller;
  */
 
 
+import co.microservices.domain.OperationType;
 import co.microservices.domain.request.RequestPagoFacturaDTO;
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.request.RequestUserDTO;
@@ -68,7 +69,13 @@ public class PruebaController {
 
     @PostMapping(value = PAGO_FACTURA)
     public ResponseEntity<Mono<ResponseReferenciaFacturaDTO>> pagoFactura(@RequestBody RequestPagoFacturaDTO request) {
-        Mono<ResponseReferenciaFacturaDTO> response = pruebaIntempoService.pagoFactura(request);
+        Mono<ResponseReferenciaFacturaDTO> response = pruebaIntempoService.pagoFactura(request, OperationType.PAGO);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = COMPENSACION_FACTURA)
+    public ResponseEntity<Mono<ResponseReferenciaFacturaDTO>> compensacionFactura(@RequestBody RequestPagoFacturaDTO request) {
+        Mono<ResponseReferenciaFacturaDTO> response = pruebaIntempoService.pagoFactura(request, OperationType.COMPENSACION);
         return ResponseEntity.ok(response);
     }
 

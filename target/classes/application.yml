@@ -20,6 +20,7 @@ spring:
         listFormasPago: /listFormasPago
         referenciaFactura: /referenciaFactura
         pagoFactura: /pagoFactura
+        compensacionFactura: /compensacionFactura
 
   messages:
     encoding: UTF-8

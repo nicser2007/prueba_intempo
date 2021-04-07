@@ -115,7 +115,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"155366\"\n}",
+					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -151,7 +151,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"155366\"\n}",
+					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -159,7 +159,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/prueba/intempo/referenciaFactura",
+					"raw": "localhost:8080/prueba/intempo/pagoFactura",
 					"host": [
 						"localhost"
 					],
@@ -167,7 +167,43 @@
 					"path": [
 						"prueba",
 						"intempo",
-						"referenciaFactura"
+						"pagoFactura"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "compensacionFactura",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/prueba/intempo/compensacionFactura",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prueba",
+						"intempo",
+						"compensacionFactura"
 					]
 				}
 			},
@@ -228,6 +264,48 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorFactura\":\"7700.675068918439\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.211.116.156:80/servicios/pagos/v1/payments/15252",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"116",
+						"156"
+					],
+					"port": "80",
+					"path": [
+						"servicios",
+						"pagos",
+						"v1",
+						"payments",
+						"15252"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "compensaAgua",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {

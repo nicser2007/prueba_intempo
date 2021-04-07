@@ -18,20 +18,7 @@ public final class ConstantsHelper {
     public static final String LIST_FORMAS_PAGO = "${spring.application.services.rest.listFormasPago}";
     public static final String REFERENCIA_FACTURA = "${spring.application.services.rest.referenciaFactura}";
     public static final String PAGO_FACTURA = "${spring.application.services.rest.pagoFactura}";
-    public static final String CRON_MINTIC_RIESGO = "${schedulers.mintic.cronRiesgo}";
-
-    // Logs on start application
-    public static final String LBLTIEMPO = "Tiempo empleado en el envío/respuesta de la operacion:  {}";
-
-    public static final String OK = "OK";
-    public static final String NO = "DISABLED";
-
-    // Correlative
-    static final String CORRELATIVE_ID = "correlation-id";
-    static final String COMPONENT_CORRELATIVE = "component";
-
-    public static final String NAMESPACE = "http://schemas.datacontract.org/2004/07/MINTIC.VYC.DTO";
-    public static final String NAMESPACE_ARRAY = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
+    public static final String COMPENSACION_FACTURA = "${spring.application.services.rest.compensacionFactura}";
 
     private ConstantsHelper() {
         // Not is necessary this implementation

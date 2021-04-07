@@ -1,4 +1,11 @@
 package co.microservices.util;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
 import com.sun.istack.NotNull;
 import io.netty.channel.ChannelOption;

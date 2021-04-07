@@ -8,9 +8,12 @@ package co.microservices.repository.jpa;
  */
 
 import co.microservices.domain.entity.Convenios;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.io.Serializable;
 
 public interface IConveniosRepository extends Serializable, CrudRepository<Convenios, Integer> {
+    Convenios findByName(String name);
 }

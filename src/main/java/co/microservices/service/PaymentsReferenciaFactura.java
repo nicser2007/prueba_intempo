@@ -1,5 +1,13 @@
 package co.microservices.service;
+/*
+ * Copyright @2021. Todos los derechos reservados.
+ *
+ * @author Gomez, Gelver
+ * @version 1, 2021
+ * @since 1.0
+ */
 
+import co.microservices.domain.OperationType;
 import co.microservices.domain.request.RequestPagoFacturaDTO;
 import co.microservices.domain.request.RequestReferenciaFacturaDTO;
 import co.microservices.domain.response.ResponseConsultaAguaDTO;
@@ -38,7 +46,7 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
         this.objectMapper = objectMapper;
     }
 
-    public Mono<Resultado> paymentsReferenciaFactura(RequestPagoFacturaDTO request) {
+    public Mono<Resultado> paymentsReferenciaFactura(RequestPagoFacturaDTO request, OperationType type) {
 
         if (request.getConvenio().equals("Gas")) {
             Pago pago = new Pago();
@@ -52,9 +60,17 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
             String url = clientProperties.getUrl().replace("{segment}", request.getReferenciaFactura());
             RequestPagoFacturaDTO pagoFacturaDTO = new RequestPagoFacturaDTO();
             pagoFacturaDTO.setValorFactura(request.getValorFactura());
-            return resultadoPagoAgua(url, pagoFacturaDTO);
+            return resultadoPagoAgua(url, pagoFacturaDTO, type);
+        }else{
+            Resultado resultado = new Resultado();
+            ReferenciaFactura ref = new ReferenciaFactura();
+            ref.setReferenciaFactura(request.getReferenciaFactura());
+
+            resultado.setReferenciaFactura(ref);
+            resultado.setMensaje("Factura de " + request.getConvenio() + " Pagada Exitosamente");
+
+            return Mono.just(resultado);
         }
-        return null;
     }
 
     public Mono<Resultado> resultadoPagoGas(Pago request) {
@@ -63,6 +79,13 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
             Resultado responseDTO = new Resultado();
             //Consumo del servicio por Giro
             return accessClientSoap.send(request, Resultado.class, soapProperties.getSoapAction())
+                    .flatMap(response -> {
+                        ReferenciaFactura ref = new ReferenciaFactura();
+                        ref.setReferenciaFactura(response.getReferenciaFactura().getReferenciaFactura());
+                        responseDTO.setReferenciaFactura(ref);
+                        responseDTO.setMensaje("Exitoso");
+                        return Mono.just(responseDTO);
+                    })
                     .onErrorResume(e -> {
                         ReferenciaFactura ref = new ReferenciaFactura();
                         ref.setReferenciaFactura("0");
@@ -77,7 +100,7 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
         }
     }
 
-    public Mono<Resultado> resultadoPagoAgua(String url, RequestPagoFacturaDTO request) {
+    public Mono<Resultado> resultadoPagoAgua(String url, RequestPagoFacturaDTO request, OperationType type) {
 
         try {
             Resultado responseDTO = new Resultado();
@@ -85,8 +108,15 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
             Map<String, String> header = new HashMap<>();
             header.put("Content-Type", MediaType.APPLICATION_JSON_VALUE);
 
+            HttpMethod httpMethod;
+            if(OperationType.PAGO==type){
+                httpMethod = HttpMethod.POST;
+            }else{
+                httpMethod = HttpMethod.DELETE;
+            }
+
             //Consumo del servicio convenio Agua
-            return clientAgua.exchange(HttpMethod.POST, url, request, String.class, MediaType.APPLICATION_JSON, header)
+            return clientAgua.exchange(httpMethod, url, request, String.class, MediaType.APPLICATION_JSON, header)
                     .flatMap(response -> {
                         ResponseConsultaAguaDTO responseConsultaAguaDTO;
                         try {
