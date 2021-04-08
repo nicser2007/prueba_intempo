@@ -115,7 +115,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\"\n}",
+					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -151,7 +151,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
+					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -187,7 +187,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"convenio\":\"Luz\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
+					"raw": "{\n\t\"convenio\":\"Agua\",\n\t\"referenciaFactura\": \"123456\",\n\t\"valorFactura\": 28829.137901375125\n}",
 					"options": {
 						"raw": {
 							"language": "json"
