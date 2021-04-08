@@ -246,7 +246,7 @@
                         <image>openjdk:11.0.5-jre</image>
                     </from>
                     <to>
-                        <image>registry.gitlab.com/moviiredsas/${project.artifactId}</image>
+                        <image>registry.githum.com/${project.artifactId}</image>
                         <tags>
                             <tag>${project.version}</tag>
                         </tags>
