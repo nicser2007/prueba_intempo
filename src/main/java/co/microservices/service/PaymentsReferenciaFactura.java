@@ -67,7 +67,7 @@ public class PaymentsReferenciaFactura extends WebServiceGatewaySupport {
             ref.setReferenciaFactura(request.getReferenciaFactura());
 
             resultado.setReferenciaFactura(ref);
-            resultado.setMensaje("Factura de " + request.getConvenio() + " Pagada Exitosamente");
+            resultado.setMensaje("Factura de " + request.getConvenio() + " " + type.getType() + " Exitosamente");
 
             return Mono.just(resultado);
         }

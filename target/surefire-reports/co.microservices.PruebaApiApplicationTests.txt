@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: co.microservices.PruebaApiApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.161 s - in co.microservices.PruebaApiApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.583 s - in co.microservices.PruebaApiApplicationTests

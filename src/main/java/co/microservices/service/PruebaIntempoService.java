@@ -130,7 +130,8 @@ public class PruebaIntempoService {
     }
 
     public Mono<ResponseReferenciaFacturaDTO> pagoFactura(RequestPagoFacturaDTO request, OperationType type){
-        log.info("Inicio Pago de facturas: Referencia: {}", request.getReferenciaFactura());
+        log.info("Inicio " + type.getType() + " de facturas: Referencia: {}", request.getReferenciaFactura());
+
         if(utilDataBase.validateConvenio(request.getConvenio())) {
             return paymentsReferenciaFactura.paymentsReferenciaFactura(request, type)
                     .flatMap(response -> {
@@ -147,7 +148,8 @@ public class PruebaIntempoService {
                             responseReferenciaFacturaDTO.setCode("0");
                             estado = "Exitoso";
                         }
-                        log.info("Pago de facturas: Referencia: {} - {}", request.getReferenciaFactura(), estado);
+
+                        log.info(" " + type.getType() + " de facturas: Referencia: {} - {}", request.getReferenciaFactura(), estado);
                         utilDataBase.updateTx(request, type, estado);
                         return Mono.just(responseReferenciaFacturaDTO);
                     });
@@ -155,7 +157,7 @@ public class PruebaIntempoService {
             ResponseReferenciaFacturaDTO responseReferenciaFacturaDTO = new ResponseReferenciaFacturaDTO();
             responseReferenciaFacturaDTO.setCode("98");
             responseReferenciaFacturaDTO.setMessage("Convenio no registrado");
-            log.info("Pago de facturas: Convenio no registrado");
+            log.info(" " + type.getType() + " de facturas: Convenio no registrado");
             return Mono.just(responseReferenciaFacturaDTO);
         }
 
